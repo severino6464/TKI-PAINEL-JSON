@@ -1,36 +1,35 @@
-from flask import Flask, render_template, request, redirect, url_for
+import telebot
+import time
+import datetime
+import random
 import json
 
-app = Flask(__name__)
+CHAVE_API = "5597794728:AAGfwOg3RijfPrQ5S_Iw6NKAuYucNEdIsO8"  # BOT FOX
+
+bot = telebot.TeleBot(CHAVE_API)
+
+group_id = '-1001974131994'
+
+links = [
+    "https://exemplo1.com",
+]
 
 # Carregar as configurações do arquivo JSON
-def carregar_configuracoes():
-    with open('config.json', 'r') as config_file:
-        config_data = json.load(config_file)
-    return config_data
+with open('config.json', 'r') as config_file:
+    config_data = json.load(config_file)
 
-# Salvar as configurações no arquivo JSON
-def salvar_configuracoes(nova_configuracao):
-    with open('config.json', 'w') as config_file:
-        json.dump(nova_configuracao, config_file, indent=4)
+possibilidades_minas = config_data["possibilidades_minas"]
+texto4 = config_data["texto4"]
+mensagem = config_data["mensagem"]
 
-@app.route('/')
-def index():
-    config_data = carregar_configuracoes()
-    return render_template('index.html', config_data=config_data)
+print("BOT-aff104-nuts")
+possibilidade_mina_aleatoria = random.choice(possibilidades_minas)
+link_aleatorio = random.choice(links)
+validade = datetime.datetime.now() + datetime.timedelta(minutes=5)
+hora_validade = validade.strftime("%H:%M")
+mensagem_formatada = mensagem.format(possibilidade_mina_aleatoria, hora_validade)
+mensagem_formatada = mensagem_formatada.replace("LINK_PLATAFORMA_CORRETA", link_aleatorio)
+mensagem_formatada = mensagem_formatada.replace("LINK_JOGO", link_aleatorio)
 
-@app.route('/editar/<campo>', methods=['GET', 'POST'])
-def editar(campo):
-    config_data = carregar_configuracoes()
-
-    if request.method == 'POST':
-        nova_configuracao = dict(config_data)
-        nova_configuracao[campo] = request.form[campo]
-        salvar_configuracoes(nova_configuracao)
-        return redirect('/')
-    else:
-        valor_atual = config_data.get(campo, '')
-        return render_template('editar.html', campo=campo, valor_atual=valor_atual)
-
-if __name__ == '__main__':
-    app.run(debug=True)
+bot.send_message(chat_id=group_id, text=mensagem_formatada, parse_mode='Markdown')
+time.sleep(5)
