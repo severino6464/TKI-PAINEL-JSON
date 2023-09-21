@@ -31,5 +31,5 @@ mensagem_formatada = mensagem.format(possibilidade_mina_aleatoria, hora_validade
 mensagem_formatada = mensagem_formatada.replace("LINK_PLATAFORMA_CORRETA", link_aleatorio)
 mensagem_formatada = mensagem_formatada.replace("LINK_JOGO", link_aleatorio)
 
-bot.send_message(chat_id=group_id, text=mensagem_formatada, parse_mode='Markdown')
+bot.send_message(chat_id=group_id, text=texto4, parse_mode='Markdown')
 time.sleep(5)
