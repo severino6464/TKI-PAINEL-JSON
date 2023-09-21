@@ -15,7 +15,7 @@ links = [
 ]
 
 # Carregar as configurações do arquivo JSON
-with open('config.json', 'r', encoding='latin-1') as config_file:
+with open('config.json', 'r', encoding='utf-8') as config_file:
     config_data = json.load(config_file)
 
 possibilidades_minas = config_data["possibilidades_minas"]
@@ -32,4 +32,4 @@ mensagem_formatada = mensagem_formatada.replace("LINK_PLATAFORMA_CORRETA", link_
 mensagem_formatada = mensagem_formatada.replace("LINK_JOGO", link_aleatorio)
 
 bot.send_message(chat_id=group_id, text=mensagem_formatada, parse_mode='Markdown')
-time.sleep(10)
+time.sleep(5)
