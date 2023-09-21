@@ -15,7 +15,7 @@ links = [
 ]
 
 # Carregar as configurações do arquivo JSON
-with open('config.json', 'r') as config_file:
+with open('config.json', 'r', encoding='latin-1') as config_file:
     config_data = json.load(config_file)
 
 possibilidades_minas = config_data["possibilidades_minas"]
