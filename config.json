@@ -1,37 +1,11 @@
-import json
-
-possibilidades_minas = [
-    "Apostar em números baixos [1-18]",
-    "Apostar em números altos [19-36]",
-    "Apostar na duzia 1 e 3",
-    "Apostar na cor 🔴",
-    "Apostar na cor ⚫"
-]
-
-texto4 = """
-ATENÇÃO VAMOS INICIAR !
-"""
-
-mensagem = """
-🔥 ROBÔ CONFIRMOU 🔥
-🎰 Roleta: Brasileira
-
-{}
-
-👉 Cobrir o zero
-🔁 Fazer até 3 gales
-🔗 [Cadastre-se antes de Jogar!](=========)
-🖥️[Jogue Aqui](https://nuts.bet/live-casino/game/2177465)
-⏱️ Válido até: {}
-"""
-
-data = {
-    "possibilidades_minas": possibilidades_minas,
-    "texto4": texto4,
-    "mensagem": mensagem
+{
+    "possibilidades_minas": [
+        "Apostar em números baixos [1-18]",
+        "Apostar em números altos [19-36]",
+        "Apostar na duzia 1 e 3",
+        "Apostar na cor 🔴",
+        "Apostar na cor ⚫"
+    ],
+    "texto4": "ATENÇÃO VAMOS INICIAR !",
+    "mensagem": "🔥 ROBÔ CONFIRMOU 🔥\n🎰 Roleta: Brasileira\n\n{}\n\n👉 Cobrir o zero\n🔁 Fazer até 3 gales\n🔗 [Cadastre-se antes de Jogar!](=========)\n🖥️[Jogue Aqui](https://nuts.bet/live-casino/game/2177465)\n⏱️ Válido até: {}"
 }
-
-# Converte o dicionário em uma string JSON formatada
-json_data = json.dumps(data, indent=4, ensure_ascii=False)
-
-print(json_data)
