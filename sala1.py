@@ -22,6 +22,12 @@ possibilidades_minas = config_data["possibilidades_minas"]
 texto4 = config_data["texto4"]
 mensagem = config_data["mensagem"]
 
+# Imprimir as configurações lidas do arquivo
+print("Configurações lidas do arquivo:")
+print(f"Possibilidades Minas: {possibilidades_minas}")
+print(f"Texto4: {texto4}")
+print(f"Mensagem: {mensagem}")
+
 print("BOT-aff104-nuts")
 possibilidade_mina_aleatoria = random.choice(possibilidades_minas)
 link_aleatorio = random.choice(links)
@@ -31,5 +37,5 @@ mensagem_formatada = mensagem.format(possibilidade_mina_aleatoria, hora_validade
 mensagem_formatada = mensagem_formatada.replace("LINK_PLATAFORMA_CORRETA", link_aleatorio)
 mensagem_formatada = mensagem_formatada.replace("LINK_JOGO", link_aleatorio)
 
-bot.send_message(chat_id=group_id, text=texto4, parse_mode='Markdown')
+bot.send_message(chat_id=group_id, text=mensagem_formatada, parse_mode='Markdown')
 time.sleep(5)
